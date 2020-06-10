@@ -82,3 +82,15 @@ def get(self, id):
 # task 1
 return ('', 204, {'Location': url_for('resources.recipes.recipes')})
 # challenge completed
+
+# challenge 5
+# task 1
+from argon2 import PasswordHasher
+HASHER = PasswordHasher()
+# task 2
+@staticmethod
+def hash_password(password):
+    return HASHER.hash(password)
+# task 3
+user.password = User.hash_password(password)
+# challenge completed
