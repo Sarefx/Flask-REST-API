@@ -94,3 +94,27 @@ def hash_password(password):
 # task 3
 user.password = User.hash_password(password)
 # challenge completed
+
+# challenge 6
+# task 1
+self.reqparse.add_argument(
+    'password',
+    required=True,
+    help='No password provided',
+    location=['form', 'json']
+)
+self.reqparse.add_argument(
+    'confirm_password',
+    required=True,
+    help='No password verification provided',
+    location=['form', 'json']
+)
+# task 2
+if args['password'] == args['confirm_password']:
+    user = models.User.create(**args)
+    return marshal(user, user_fields), 201
+return make_response(
+    json.dumps({
+        'error': 'Password and password verification do not match'
+    }), 400)
+# challenge completed
